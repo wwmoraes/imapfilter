@@ -1,0 +1,134 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.1.
+--
+-- see: https://github.com/sol/hpack
+
+name:           imapfilter
+version:        0.1.0.0
+synopsis:       IMAP search query DSL compatible with Gmail queries
+description:    Please see the README on GitHub at <https://github.com/wwmoraes/imapfilter#readme>
+category:       Command Line
+homepage:       https://github.com/wwmoraes/imapfilter#readme
+bug-reports:    https://github.com/wwmoraes/imapfilter/issues
+author:         William Artero
+maintainer:     haskell@artero.dev
+copyright:      2023 William Artero
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    CHANGELOG.md
+
+source-repository head
+  type: git
+  location: https://github.com/wwmoraes/imapfilter
+
+library
+  exposed-modules:
+      Network.HaskellNet.IMAP.Search
+      Network.IMAP.Date
+      Network.IMAP.Search
+      Network.IMAP.Search.Internal.Operation
+      Network.IMAP.Search.Internal.Parser
+      Network.IMAP.Search.Internal.SearchExpr
+      Network.IMAP.Search.Internal.SearchQuery
+  hs-source-dirs:
+      src
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall
+  build-tool-depends:
+      hspec-discover:hspec-discover
+  build-depends:
+      HaskellNet
+    , base >=4.7 && <5
+    , old-locale
+    , old-time
+    , parsec
+    , parsedate
+    , time
+  default-language: Haskell2010
+
+executable example-haskellnet
+  main-is: Main.hs
+  hs-source-dirs:
+      examples/HaskellNet
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall
+  build-tool-depends:
+      hspec-discover:hspec-discover
+  build-depends:
+      HaskellNet
+    , HaskellNet-SSL
+    , base >=4.7 && <5
+    , bytestring
+    , imapfilter
+  default-language: Haskell2010
+
+executable example-text
+  main-is: Main.hs
+  hs-source-dirs:
+      examples/text
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall
+  build-tool-depends:
+      hspec-discover:hspec-discover
+  build-depends:
+      HaskellNet
+    , base >=4.7 && <5
+    , imapfilter
+    , text
+  default-language: Haskell2010
+
+executable imapfilter
+  main-is: Main.hs
+  other-modules:
+      Config
+  hs-source-dirs:
+      app/imapfilter
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall
+  build-tool-depends:
+      hspec-discover:hspec-discover
+  build-depends:
+      HaskellNet
+    , HaskellNet-SSL
+    , aeson
+    , base >=4.7 && <5
+    , bytestring
+    , composition-extra
+    , containers
+    , imapfilter
+    , text
+    , time
+    , vector
+    , yaml
+  default-language: Haskell2010
+
+executable imapquery
+  main-is: Main.hs
+  hs-source-dirs:
+      app/imapquery
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall
+  build-tool-depends:
+      hspec-discover:hspec-discover
+  build-depends:
+      HaskellNet
+    , HaskellNet-SSL
+    , base >=4.7 && <5
+    , bytestring
+    , imapfilter
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall
+  build-tool-depends:
+      hspec-discover:hspec-discover
+  build-depends:
+      HaskellNet
+    , QuickCheck
+    , base >=4.7 && <5
+    , hspec
+    , imapfilter
+  default-language: Haskell2010

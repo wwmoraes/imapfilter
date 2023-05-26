@@ -1,0 +1,9 @@
+- server:
+    address: IMAP_SERVER
+    username: IMAP_USERNAME
+    password: IMAP_PASSWORD
+  mailboxes:
+    inbox:
+    - trash: "from:foo@bar.com is:seen -is:flagged"
+    - move: "from:foo@bar.com is:seen -is:flagged before:2023/06/18"
+      target: "test"

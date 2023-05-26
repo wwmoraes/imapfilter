@@ -1,0 +1,9 @@
+--color
+--failure-report .stack-work/hspec-failures
+--randomize
+--rerun
+--rerun-all-on-success
+--unicode
+--diff
+--pretty
+--times

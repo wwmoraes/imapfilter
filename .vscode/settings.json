@@ -1,0 +1,31 @@
+{
+  "[dhall]": {
+    "editor.formatOnSave": false
+  },
+  "cSpell.words": [
+    "Combinators",
+    "destdir",
+    "fmap",
+    "foldr",
+    "IMAP",
+    "imapfilter",
+    "IMAPSSL",
+    "mempty",
+    "mzero",
+    "NOINLINE",
+    "redocs",
+    "SENTBEFORE",
+    "SENTON",
+    "SENTONs",
+    "SENTSINCE",
+    "SENTSINCEs",
+    "uncurry",
+    "undraft",
+    "UNFLAG",
+    "unflagged",
+    "unkeyword",
+    "unwords",
+    "XGMRAW"
+  ],
+  "haskell.formattingProvider": "stylish-haskell"
+}

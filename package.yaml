@@ -1,0 +1,108 @@
+name:                imapfilter
+version:             0.1.0.0
+github:              wwmoraes/imapfilter
+license:             MIT
+author:              William Artero
+maintainer:          haskell@artero.dev
+copyright:           2023 William Artero
+synopsis:            IMAP search query DSL compatible with Gmail queries
+category:            Command Line
+description:         Please see the README on GitHub at <https://github.com/wwmoraes/imapfilter#readme>
+
+extra-source-files:
+- README.md
+- CHANGELOG.md
+
+dependencies:
+- base >= 4.7 && < 5
+- HaskellNet
+
+ghc-options:
+- -threaded
+- -rtsopts
+- -with-rtsopts=-N
+- -Wall
+# - -Wcompat
+# - -Widentities
+# - -Wincomplete-record-updates
+# - -Wincomplete-uni-patterns
+# - -Wmissing-export-lists
+# - -Wmissing-home-modules
+# - -Wpartial-fields
+# - -Wredundant-constraints
+
+build-tools: hspec-discover
+
+_without-path: &_without-path
+  when:
+  - condition: false
+    other-modules: Paths_imapfilter
+
+_with-path: &_with-path
+  when:
+  - condition: true
+    other-modules: Paths_imapfilter
+
+library:
+  <<: *_without-path
+  source-dirs: src
+  dependencies:
+  - HaskellNet
+  - parsec
+  - time
+  - old-time
+  - old-locale
+  - parsedate
+
+executables:
+  imapfilter:
+    <<: *_without-path
+    main:                Main.hs
+    source-dirs:         app/imapfilter
+    dependencies:
+    - imapfilter
+    - bytestring
+    - HaskellNet
+    - HaskellNet-SSL
+    - text
+    - yaml
+    - vector
+    - aeson
+    - composition-extra
+    - containers
+    - time
+  imapquery:
+    <<: *_without-path
+    main:                Main.hs
+    source-dirs:         app/imapquery
+    dependencies:
+    - imapfilter
+    - bytestring
+    - HaskellNet
+    - HaskellNet-SSL
+  example-haskellnet:
+    <<: *_without-path
+    main:                Main.hs
+    source-dirs:         examples/HaskellNet
+    dependencies:
+    - imapfilter
+    - bytestring
+    - HaskellNet
+    - HaskellNet-SSL
+  example-text:
+    <<: *_without-path
+    main:                Main.hs
+    source-dirs:         examples/text
+    dependencies:
+    - imapfilter
+    - text
+
+tests:
+  test:
+    <<: *_without-path
+    main:                Spec.hs
+    source-dirs:         test
+    dependencies:
+    - imapfilter
+    - hspec
+    - QuickCheck
